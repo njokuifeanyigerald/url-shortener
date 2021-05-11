@@ -1,0 +1,27 @@
+{% extends 'app/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><title>UrlShortener | {% block title %}List{% endblock %}</title></title>
+</head>
+<body>
+    {% block content %}
+    <div class="container mt-3">
+        <h2>Url links</h2>
+        {% for info in data %}
+
+        <ul class="list-group">
+            <li class="list-group-item mt-1"><a href="{% url 'redirect' info.slug %}">{{info.slug}}</a></li>
+        </ul>
+        {% endfor %}
+    </div>
+    <footer class="text-center text-light mt-5 bg-dark" style="height: 80px;">
+       <p  class="pt-4">BopGeek  &copy; 2021 </p>
+    </footer>
+    {% endblock %}
+    
+</body>
+</html>

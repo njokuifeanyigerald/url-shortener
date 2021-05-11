@@ -1,0 +1,29 @@
+{% extends 'app/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrlShortener | {% block title %}Home{% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+    <div class="container mt-3">
+        <h2 class="text-center text-info">Shorten Your Url</h2>
+        <form method="POST" action="" class="form">
+            {% csrf_token %}
+            <div class="form-group">
+                {{form.url}}
+            </div>
+            
+            <button class="btn btn-outline-dark mt-2" type="submit">Submit</button>
+        </form>
+    </div>
+    <footer class="text-center text-light mt-5 bg-dark" style="height: 80px;">
+        <p  class="pt-4">BopGeek  &copy; 2021 </p>
+     </footer>
+    {% endblock %}
+    
+</body>
+</html>
