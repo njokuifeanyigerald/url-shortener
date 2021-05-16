@@ -11,7 +11,7 @@ from django.shortcuts import redirect, render
 
 class LoginView(auth_views.LoginView):
     form_class = LoginForm
-    template_name = 'accounts/login.html'
+    
 
 class RegisterView(generic.CreateView):
     form_class = RegisterForm
