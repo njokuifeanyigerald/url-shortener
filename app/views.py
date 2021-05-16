@@ -14,14 +14,17 @@ def home(request):
             url  = form.cleaned_data['url']
             new_url = DataModel(url=url, slug=slug)
             new_url.save()
+            # f'/u/{new_url.slug}
+            context = {
+                'form': form,
+                'new_url': f'http://127.0.0.1:8000/u/{new_url.slug}'
+            }
             # request.user.urlshort.add(new_url)
-            return redirect(f'/u/{new_url.slug}')
+            return render(request, 'app/home.html', context)
     else:
         form = DataForm(request.POST or None)
-    data = DataModel.objects.all()
     context = {
         'form': form,
-        'data': data
     }
     return render(request, 'app/home.html', context)
 

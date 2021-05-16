@@ -9,21 +9,61 @@
 </head>
 <body>
     {% block content %}
-    <div class="container mt-3">
-        <h2 class="text-center text-info">Shorten Your Url</h2>
-        <form method="POST" action="" class="form">
+    <div class="container mt-3 text-center">
+        {% if new_url %}
+        <br><br>
+        <h2 class="text-center ">Shorten Your Url</h2>
+        <form class="d-flex text-center mt-4" style="margin-left: 400px;">
+            <input class="form-control me-2 text-center" type="text" value="{{new_url}}" id="myInput" style="width: 300px;">
+            <button type="button" onclick="myFunction()" class="btn btn-outline-light mr-3" data-bs-toggle="popover" 
+                data-bs-content="Text Copied"
+            >
+                Copy
+            </button>
+        </form>
+
+        {% else %}
+        <br><br>
+        <h2 class="text-center ">Shorten Your Url</h2>
+        <form method="POST" action="" class="d-flex text-center mt-4" style="margin-left: 400px;">
             {% csrf_token %}
             <div class="form-group">
                 {{form.url}}
             </div>
             
-            <button class="btn btn-outline-dark mt-2" type="submit">Submit</button>
+            <button class="btn btn-outline-light mr-3" type="submit">Submit</button>
         </form>
+        {% endif %}
+
+        
+      
+        
+        
+        
     </div>
-    <footer class="text-center text-light mt-5 bg-dark" style="height: 80px;">
-        <p  class="pt-4">BopGeek  &copy; 2021 </p>
-     </footer>
+    <footer class="text-center text-muted  " style="height: 60px; margin-top: 350px; background-color: white;">
+        <p  class="pt-4 ">BopGeek  &copy; 2021 </p>
+    </footer>
+    
+     <script>
+        function myFunction() {
+            /* Get the text field */
+            var copyText = document.getElementById("myInput");
+
+            /* Select the text field */
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text inside the text field */
+            document.execCommand("copy");
+
+            // /* Alert the copied text */
+            // alert("Copied the text: " + copyText.value);
+        }
+    </script>
     {% endblock %}
+
+    
     
 </body>
 </html>

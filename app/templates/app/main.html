@@ -1,0 +1,11 @@
+{% extends 'app/base.html' %}
+{% block content %}
+<form method="POST" action="" class="form">
+    {% csrf_token %}
+    <div class="form-group">
+        {{form.url}}
+    </div>
+    
+    <button class="btn btn-outline-light mt-2" type="submit">Submit</button>
+</form>
+{% endblock %}
