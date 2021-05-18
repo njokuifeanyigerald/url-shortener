@@ -10,7 +10,7 @@
 <body>
     {% block content %}
     <div class="container mt-3 text-center">
-        {% if new_url %}
+            {% if new_url %}
         <br><br>
         <h2 class="text-center ">Shorten Your Url</h2>
         <form class="d-flex text-center mt-4" style="margin-left: 400px;">
@@ -22,9 +22,10 @@
             </button>
         </form>
 
-        {% else %}
+            {% else %}
         <br><br>
-        <h2 class="text-center ">Shorten Your Url</h2>
+        <h2 class="text-center ">Shorten Your Url</h2> 
+        <p></p>
         <form method="POST" action="" class="d-flex text-center mt-4" style="margin-left: 400px;">
             {% csrf_token %}
             <div class="form-group">
@@ -33,8 +34,8 @@
             
             <button class="btn btn-outline-light mr-3" type="submit">Submit</button>
         </form>
-        {% endif %}
-
+            {% endif %}
+        
         
       
         

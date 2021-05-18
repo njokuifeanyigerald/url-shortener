@@ -8,8 +8,28 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" 
     crossorigin="anonymous">
+    <script type="text/javascript">
+        var user =  '{{request.user}}'
+        function getToken(name) {
+		    var cookieValue = null;
+		    if (document.cookie && document.cookie !== '') {
+		        var cookies = document.cookie.split(';');
+		        for (var i = 0; i < cookies.length; i++) {
+		            var cookie = cookies[i].trim();
+		            // Does this cookie string begin with the name we want?
+		            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+		                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+		                break;
+		            }
+		        }
+		    }
+		    return cookieValue;
+		}
+		var csrftoken = getToken('csrftoken')
+    </script>
 </head>
 <body class="text-light" style="background: linear-gradient(90deg, rgba(17, 68, 235, 0.863)0%, rgb(15, 170, 218) 43%, rgba(17, 68, 235, 0.863) 100%);">
+    
     {% include 'app/navbar.html'%}
     {% block content %}
     {% endblock %}
@@ -26,6 +46,80 @@
         return new bootstrap.Popover(popoverTriggerEl)
         })
     </script>
+    <script>
+        var updateBtn = document.getElementsByClassName('update')
+    
+        for(var i= 0; i < updateBtn.length; i++){
+            updateBtn[i].addEventListener('click', function(){
+                var productId = this.dataset.product
+                var action = this.dataset.action
+                console.log('listId: ', productId ,"action: ", action)
+    
+                // remember user is in home.html thats why am able to access it
+                console.log('USER:',    user)
+                if(user === 'AnonymousUser'){
+                    console.log('not authenticated')
+                }else{
+                    updateUserOrder(productId, action)
+                    console.log('authenticated')
+                }
+            })
+        }
+    
+    
+    
+        function updateUserOrder(productId, action){
+            console.log('User is authenticated, sending data...')
+            // the url that the data will be sent to
+            var url = '/update_item/'
+            // to send, we use fetch
+            fetch(url, {
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken,
+                },
+                body: JSON.stringify({'productId': productId, 'action':action})
+            })
+            // turn the response into a json value
+            .then((response) => {
+                return response.json();
+            })
+            .then((res) => {
+                console.log('Data:', res)
+                // reloads the current page
+                location.reload()
+
+            })
+            
+        }
+
+    
+            // function addCookieItem(productId, action){
+            //     console.log('Not logged in')
+    
+            //     if(action == 'add'){
+            //         if(cart[productId] == undefined){
+            //             cart[productId] = {'quantity': 1}
+            //             console.log('undefined')
+            //         }else{
+            //             cart[productId]['quantity'] += 1
+            //             console.log('added something')
+            //         }
+            //     }
+            //     if(action == 'remove'){
+            //         cart[productId]['quantity'] -= 1
+            //         if (cart[productId]['quantity'] <= 0){
+            //             console.log('Remove Item')
+            //             delete cart[productId]
+            //         }
+            //     }
+                
+            //     console.log('cart:', cart)
+            //     document.cookie = 'cart' + JSON.stringify(cart) + ";domain=;path=/"
+            // }
+    
+        </script>
 
 </body>
 </html>

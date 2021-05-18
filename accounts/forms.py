@@ -38,14 +38,14 @@ class RegisterForm(UserCreationForm):
 
 
 class LoginForm(AuthenticationForm):
-    username = forms.CharField(label='Email', widget=(forms.TextInput(attrs={
+    username = forms.EmailField(label='Email', widget=(forms.EmailInput(attrs={
         "type": "email",
         "placeholder": "Email",
         'class' : "form-control me-2 text-center",
         'placeholder': 'enter your email',
         'style': 'width: 300px; margin-left: 400px '
     })))
-    password = forms.CharField(label='Password', widget=(forms.TextInput(attrs={
+    password = forms.CharField( label='Password', widget=(forms.TextInput(attrs={
         "type": "password",
         "placeholder": "Password",
         'class' : "form-control me-2 text-center",

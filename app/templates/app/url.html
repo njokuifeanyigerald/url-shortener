@@ -10,14 +10,26 @@
 <body>
     {% block content %}
     <div class="container mt-3">
+        {% if data %}
         <h2>Url links</h2>
         {% for info in data %}
 
         <ul class="list-group">
-            <li class="list-group-item mt-1"><a href="{% url 'redirect' info.slug %}">{{info.slug}}</a></li>
+            <li class="list-group-item mt-1 ">
+                <a href="#" class="update" data-product={{info.id}} data-action='add'>{{info.slug}}</a>
+            </li>
+            
         </ul>
         {% endfor %}
+        {% else %}
+        <h1 class="text-center mt-5 text-light"> no url to display</h1>
+        {% endif %}
     </div>
+    <footer class="text-center text-muted " style="height: 72px; margin-top: 400px; background-color: white;">
+        <p  class="pt-4 ">BopGeek  &copy; 2021 </p>
+    </footer>
+
+    
     {% endblock %}
     
 </body style="margin-top:200px">
