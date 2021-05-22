@@ -51,16 +51,16 @@
     
         for(var i= 0; i < updateBtn.length; i++){
             updateBtn[i].addEventListener('click', function(){
-                var productId = this.dataset.product
+                var infoId = this.dataset.info
                 var action = this.dataset.action
-                console.log('listId: ', productId ,"action: ", action)
+                console.log('infoId: ', infoId ,"action: ", action)
     
                 // remember user is in home.html thats why am able to access it
                 console.log('USER:',    user)
                 if(user === 'AnonymousUser'){
                     console.log('not authenticated')
                 }else{
-                    updateUserOrder(productId, action)
+                    updateUserOrder(infoId, action)
                     console.log('authenticated')
                 }
             })
@@ -68,7 +68,7 @@
     
     
     
-        function updateUserOrder(productId, action){
+        function updateUserOrder(infoId, action){
             console.log('User is authenticated, sending data...')
             // the url that the data will be sent to
             var url = '/update_item/'
@@ -79,7 +79,7 @@
                     'Content-Type': 'application/json',
                     'X-CSRFToken': csrftoken,
                 },
-                body: JSON.stringify({'productId': productId, 'action':action})
+                body: JSON.stringify({'infoId': infoId, 'action':action})
             })
             // turn the response into a json value
             .then((response) => {

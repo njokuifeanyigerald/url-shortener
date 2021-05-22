@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',
     'accounts.apps.AccountsConfig',
+
+    # "url_tracker",
 ]
 
 MIDDLEWARE = [
@@ -48,6 +50,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # 'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    # 'url_tracker.middleware.URLChangePermanentRedirectMiddleware',
 ]
 
 ROOT_URLCONF = 'UrlShortener.urls'
@@ -80,7 +85,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

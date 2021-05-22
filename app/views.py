@@ -6,6 +6,25 @@ import random, string
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 import json
+import urllib
+
+
+# import urllib2
+# original_url = 'http://someshorturl/5b2su2'
+# response = urllib2.urlopen(original_url)
+# # final_url != original_url if redirected
+# final_url = response.geturl() 
+# # response_code will be 302 for redirects
+# response_code = response.getcode()
+
+# if response_code == 302:
+#     # redirected so this may a short url
+# else:
+#     # this is not a short url
+
+# original_url = ''
+# response = urllib.urlopen()
+
 
 def home(request):
     try:
@@ -20,7 +39,8 @@ def home(request):
                 # f'/u/{new_url.slug}
                 context = {
                     'form': form,
-                    'new_url': f'http://127.0.0.1:8000/u/{new_url.slug}'
+                    'new_url': f'http://127.0.0.1:8000/u/{new_url.slug}',
+                    'clicked': new_url.clicked
                 }
                 # request.user.urlshort.add(new_url)
                 return render(request, 'app/home.html', context)
@@ -39,17 +59,18 @@ def home(request):
         # return render(request, 'app/home.html', context)
         return JsonResponse('data is not in database', safe=False)
 
-
 def Redirect(request, slugs):
     try:
+        # product = DataModel.objects.get(slug=slugs)
         data = DataModel.objects.get(slug=slugs)
+        # match = tracking_url.guess_carrier(data)
+        # if match:
+        #     product.clicked = (product.clicked + 1)   
     except DataModel.DoesNotExist:
         return JsonResponse('data is not in database', safe=False)
 
 
         
-
-    return redirect(data.url)
 @login_required(login_url='login')
 def Info(request):
     try:
@@ -65,12 +86,12 @@ def Info(request):
 
 def updateItem(request):
     data = json.loads(request.body)
-    productId = data['productId']
+    infoId = data['infoId']
     action = data['action']
     print(action)
-    print(productId)
+    print(infoId)
 
-    product = DataModel.objects.get(id=productId)
+    product = DataModel.objects.get(id=infoId)
     print(product)
 
     if action == 'add':
