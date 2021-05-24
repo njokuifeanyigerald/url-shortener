@@ -1,7 +1,7 @@
 # url-shortner
 a url shortener built with django
 ## Built By BopGeek
-![IMG_20200621_162802_651~2](https://user-images.githubusercontent.com/46121207/119362454-9ecfa980-bca4-11eb-9759-2c1f5fad70f7.jpg)
+![github](https://user-images.githubusercontent.com/46121207/119362645-d3dbfc00-bca4-11eb-9e17-ed922c63a704.jpg)
 
 
 <!-- Project URL: https://urlshortner-django.herokuapp.com/ -->
