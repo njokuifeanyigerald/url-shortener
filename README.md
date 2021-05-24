@@ -30,6 +30,18 @@ When the user enters the link, a short link will appear. Use clipboard emote to 
 5) It redirected to the original link
 ![Screenshot (12)](https://user-images.githubusercontent.com/46121207/119359564-accffb00-bca1-11eb-8380-f52adb78f797.png)
 
+6) a user can see his/her urls
+![Screenshot (15)](https://user-images.githubusercontent.com/46121207/119361520-ad699100-bca3-11eb-97b7-01fb064015e3.png)
+
+7) a user can see its urls and it will count when linked from that particular page
+  ![Screenshot (13)](https://user-images.githubusercontent.com/46121207/119361735-e570d400-bca3-11eb-8d96-72b48ba57754.png)
+  
+8) when clicked will count and redirect you to the original link
+![Screenshot (14)](https://user-images.githubusercontent.com/46121207/119361869-0802ed00-bca4-11eb-999a-d8edaaa7981e.png)
+
+ 
+
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
