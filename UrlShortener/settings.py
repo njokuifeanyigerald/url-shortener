@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'app',
     'accounts.apps.AccountsConfig',
 
-    # "url_tracker",
 ]
 
 MIDDLEWARE = [
@@ -50,9 +49,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    # 'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
-    # 'url_tracker.middleware.URLChangePermanentRedirectMiddleware',
+    
+# heroku
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+   
 ]
 
 ROOT_URLCONF = 'UrlShortener.urls'
@@ -76,13 +76,16 @@ TEMPLATES = [
 WSGI_APPLICATION = 'UrlShortener.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'urlshortener',
+        'USER': 'postgres',
+        'PASSWORD': '12345',
+        'HOST': 'localhost',
+
+    # heroku
+        'CONN_MAX_AGE': 500
     }
 }
 
@@ -122,8 +125,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
@@ -139,3 +147,11 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'brainboyrichmond@gmail.com'
 EMAIL_HOST_PASSWORD = 'ideqlqwohbceahcf'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import django_heroku
+
+
+django_heroku.settings(locals())
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
