@@ -15,7 +15,18 @@ def home(request):
         if form.is_valid():
             slug = ''.join(random.choice(string.ascii_letters) for x in range(8))
             url  = form.cleaned_data['url']
-            new_url = DataModel(user=request.user, url=url, slug=slug)
+            if request.user.is_authenticated:
+                new_url = DataModel(user=request.user, url=url, slug=slug)
+                new_url.clicked = (new_url.clicked  + 1)
+                new_url.save()
+                context = {
+                'form': form,
+                'new_url': f'http://127.0.0.1:8000/u/{new_url.slug}',
+                'clicked': new_url.clicked
+                }
+                return render(request, 'app/home.html', context)
+            # else
+            new_url = DataModel(url=url, slug=slug)
             new_url.clicked = (new_url.clicked  + 1)
             new_url.save()
             context = {
@@ -34,6 +45,10 @@ def home(request):
 def Redirect(request, slugs):
     try:
         data = DataModel.objects.get(slug=slugs)
+        if request.user.is_authenticated:
+            data.clicked = (data.clicked + 1)
+            data.save()
+            return redirect(data.url)
         return redirect(data.url)
     except DataModel.DoesNotExist:
         return JsonResponse('data is not in database', safe=False)

@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$srpga3jkfsq&s8jfmtjzpm&bcl_5oya_j@!c4o12_p4x*pvjf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -145,8 +145,8 @@ EMAIL_HOST_PASSWORD = 'ideqlqwohbceahcf'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-import django_heroku
+# import django_heroku
 
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
