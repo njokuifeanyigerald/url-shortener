@@ -16,7 +16,7 @@ class LoginView(auth_views.LoginView):
 
 class RegisterView(generic.CreateView):
     form_class = RegisterForm
-    template_name = 'accounts/register.html'
+    template_name = 'app/register.html'
     success_url = reverse_lazy('login')
 
 def logoutView(request):

@@ -36,8 +36,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+        
     'app',
     'accounts.apps.AccountsConfig',
+
+    
+    'crispy_forms',
+    
 
 ]
 
@@ -125,8 +130,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_URL = '/media/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'static/images')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
@@ -134,19 +149,9 @@ AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login'
 
-# smtp simple mail transfer protocol
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'brainboyrichmond@gmail.com'
-EMAIL_HOST_PASSWORD = 'ideqlqwohbceahcf'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # import django_heroku
-
-
 # django_heroku.settings(locals())
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
