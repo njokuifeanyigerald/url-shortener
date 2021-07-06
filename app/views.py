@@ -37,7 +37,7 @@ def home(request):
                 new_url.save()
                 context = {
                 'form': form,
-                'new_url': f'http://127.0.0.1:8000/u/{new_url.slug}',
+                'new_url': f'https://boply.herokuapp.com/u/{new_url.slug}',
                 'clicked': new_url.clicked
                 }
                 return render(request, 'app/home.html', context)
@@ -47,7 +47,7 @@ def home(request):
             new_url.save()
             context = {
                 'form': form,
-                'new_url': f'http://127.0.0.1:8000/u/{new_url.slug}',
+                'new_url': f'https://boply.herokuapp.com/u/{new_url.slug}',
                 'clicked': new_url.clicked
             }
             return render(request, 'app/home.html', context)
