@@ -1,0 +1,27 @@
+{% extends 'feed/layout.html' %}
+{% load crispy_forms_tags %}
+{% load static %} 
+{% block cssfiles %}{% endblock cssfiles %}
+{% block content %}
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center">
+                        <b>You have been logged out!</b>
+                    </h5>
+                    <form action="" class="form-signing" method="POST">
+                        <div class="form-group">
+                            <a href="{% url 'login' %}" class="btn btn-lg btn-info btn-block text-uppercase">
+                                Login Again
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
         
     'app',
-    'accounts.apps.AccountsConfig',
+    # 'accounts.apps.AccountsConfig',
 
     
     'crispy_forms',
@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'UrlShortener.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'urlshortener',
+        'NAME': 'urlshort',
         'USER': 'postgres',
         'PASSWORD': '12345',
         'HOST': 'localhost',
@@ -142,9 +142,6 @@ MEDIA_ROOT =  os.path.join(BASE_DIR, 'static/images')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-
-AUTH_USER_MODEL = 'accounts.CustomUser'
-AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login'

@@ -1,13 +1,29 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import DataForm
+from .forms import DataForm, UserRegisterForm
 from .models import DataModel
 import random, string
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 import json
 import urllib
+from django.contrib import messages
 
+
+def register(request):
+    # used my own style
+    form = UserRegisterForm()
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request,  f'your account has been created! you can login')
+            return redirect('login')
+    context = {
+        'form':form
+    }
+    return render(request, 'app/register.html', context)
 
 def home(request):
     if request.method == 'POST':
