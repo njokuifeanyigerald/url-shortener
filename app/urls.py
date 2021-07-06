@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home,Redirect,Info,updateItem, register
+from .views import home,Redirect,Info, updateItem,register
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [

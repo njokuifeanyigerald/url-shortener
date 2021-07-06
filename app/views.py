@@ -99,8 +99,7 @@ def updateItem(request):
     product = DataModel.objects.get(id=infoId)
     print(product)
 
-    if action == 'add':
-        product.clicked = (product.clicked + 1)
-   
-    product.save()
+    # if action == 'add':
+    #     product.clicked = (product.clicked + 1)
+    
     return JsonResponse('item was added' , safe=False)
