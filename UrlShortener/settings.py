@@ -99,7 +99,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'sqlite3.db'),
-        'CONN_MAX_AGE': 500
+        # 'CONN_MAX_AGE': 500
     }
 }
 
@@ -148,7 +148,7 @@ STATICFILES_DIRS = [
 ]
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT  = os.path.join(BASE_DIR, ' media_root')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -160,9 +160,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login'
-
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # import django_heroku
 # django_heroku.settings(locals())
