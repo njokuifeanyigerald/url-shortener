@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '$srpga3jkfsq&s8jfmtjzpm&bcl_5oya_j@!c4o12_p4x*pvjf'
+SECRET_KEY = os.environ.get('secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -81,16 +81,23 @@ TEMPLATES = [
 WSGI_APPLICATION = 'UrlShortener.wsgi.application'
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'urlshort',
-        'USER': 'postgres',
-        'PASSWORD': '12345',
-        'HOST': 'localhost',
+# DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'urlshort',
+    #     'USER': 'postgres',
+    #     'PASSWORD': '12345',
+    #     'HOST': 'localhost',
 
     # heroku
-        'CONN_MAX_AGE': 500
+        # 'CONN_MAX_AGE': 500
+    # }
+# }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'sqlite3.db')
     }
 }
 

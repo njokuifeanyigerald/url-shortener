@@ -6,8 +6,8 @@ import random, string
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 import json
-import urllib
 from django.contrib import messages
+from django.urls import reverse
 
 
 def register(request):
@@ -35,6 +35,7 @@ def home(request):
                 new_url = DataModel(user=request.user, url=url, slug=slug)
                 new_url.clicked = (new_url.clicked  + 1)
                 new_url.save()
+                url = reverse('home')
                 context = {
                 'form': form,
                 'new_url': f'https://boply.herokuapp.com/u/{new_url.slug}',
@@ -45,6 +46,7 @@ def home(request):
             new_url = DataModel(url=url, slug=slug)
             new_url.clicked = (new_url.clicked  + 1)
             new_url.save()
+            url = reverse('home')
             context = {
                 'form': form,
                 'new_url': f'https://boply.herokuapp.com/u/{new_url.slug}',

@@ -13,16 +13,14 @@
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class="card card-signin my-5">
-                    <div class="card-body">
-                        
+                    <div class="card-body">              
                         {% if new_url %}
-                        <h5 class="card-title text-center"><b>Sign In</b></h5>
+                        <h5 class="card-title text-primary text-center"><b>copy link</b></h5>
                         <form action="" class="form-signing" method="POST">
                             {% csrf_token %}
                             <input class="form-control me-2 text-center" type="text" value="{{new_url}}" id="myInput">
-                            <button type="button" onclick="myFunction()" class="btn btn-outline-primary mr-3" data-bs-toggle="popover" 
-                                data-bs-content="Text Copied"
-                            >
+                            <button type="button" onclick="myFunction()" class="btn mt-3 btn-outline-primary mr-3" data-bs-toggle="popover" 
+                                data-bs-content="Text Copied">
                                 Copy
                             </button>
                         </form>
@@ -32,7 +30,6 @@
                             <div class="form-group text-primary">
                                 {{form.url}}
                             </div>
-                            
                             <button class="btn btn-outline-primary mr-3" type="submit">Submit</button>
                         </form>
                         {% endif %}
@@ -40,28 +37,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!-- <div class="container mt-3 text-center">
-            
-        <br><br>
-        <h2 class="text-center ">Shorten Your Url</h2>
-        <form class="d-flex text-center mt-4" >
-           
-        </form>
-
-            
-        <br><br>
-        <h2 class="text-center ">Shorten Your Url</h2> 
-        <p></p>
-        
-           
-        
-        
-      
-        
-        
-        
-    </div> -->
+    </div>          
+    
     <footer class="text-center text-muted  " style="height: 60px; margin-top: 300px; background-color: white;">
         <p  class="pt-4 ">BopGeek  &copy; 2021 </p>
     </footer>
